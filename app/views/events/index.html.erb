@@ -1,6 +1,10 @@
 <h1>События</h1>
 <p>Ниже перечень событий</p>
 
-<div class="row buffer-bottom">
+<%= link_to 'New question', new_event_path, class: 'btn btn-success' %>
+
+<div>
   <%= render partial: 'event', collection: @events %>
 </div>
+
+<%= paginate @events %>
