@@ -1,18 +1,37 @@
 @import '~bootstrap/scss/bootstrap';
 
 .page-link {
-  color: #28a745;
+  color: #198754;
 }
 
 .page-item.active .page-link {
-  background-color: #28a745;
-  border: 1px solid #28a745;
+  background-color: #198754;
+  border: 1px solid #198754;
   color: #fff;
 }
 .page-link:hover {
-  color: #28a745;
+  color: #198754;
 }
 
 .mandatory .col-form-label:after {
-  content:"*";color:red;
+  content: "*";
+  color: #dc3545;
+}
+
+.navbar-brand {
+  font-size: larger;
+}
+
+//.edit-btn-container {
+//  border: 1px solid #28a745;
+//}
+
+.edit-btn {
+  border: 1px solid #198754;
+  background: #d4edda;
+}
+
+.delete-btn {
+  border: 1px solid #dc3545;
+  background: #f8d7da;
 }
