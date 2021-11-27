@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.order(created_at: :desc).page params[:page]
+    @events = Event.order(updated_at: :desc).page params[:page]
   end
 
   def new
@@ -10,6 +10,7 @@ class EventsController < ApplicationController
   end
 
   def edit
+    @event = Event.find(params[:id])
   end
 
   def create
@@ -19,14 +20,25 @@ class EventsController < ApplicationController
     if @event.save
       redirect_to action: 'index', notice: 'событие успешно создано'
     else
-      render :new, status: 422
+      render :new, status: :unprocessable_entity
     end
   end
 
   def update
+    @event = Event.find(params[:id])
+
+    if @event.update(event_params)
+      redirect_to action: 'index', flash: 'Событие успешно обновлено'
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
+    @event = Event.find(params[:id])
+    @event.destroy
+
+    redirect_to action: 'index', notice: 'Событие удалено'
   end
 
   private
