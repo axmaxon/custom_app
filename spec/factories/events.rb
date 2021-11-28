@@ -6,9 +6,9 @@ FactoryBot.define do
 
     sequence(:location) { |n| "ул. Торфорезов #{n} " }
 
-    starttime {  "#{Time.now}" }
+    starttime { "#{Time.now}" }
 
-    endtime {  "#{Time.now}" }
+    endtime { "#{Time.now}" }
 
     sequence(:organizermail) { |n| "someguy_#{n}@something.com" }
 
