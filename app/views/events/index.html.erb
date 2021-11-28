@@ -1,0 +1,7 @@
+<%= link_to 'Новое событие', new_event_path, class: 'btn btn-sm btn-success' %>
+
+<div>
+  <%= render partial: 'event', collection: @events %>
+</div>
+
+<%= paginate @events %>
