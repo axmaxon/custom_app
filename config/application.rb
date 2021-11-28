@@ -45,5 +45,7 @@ module CustomApp
                        controller_spec: true
       g.fixture_replacement :factory_bot, dir: 'spec/factories'
     end
+
+    config.time_zone = 'Ekaterinburg'
   end
 end
