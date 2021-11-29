@@ -6,7 +6,7 @@ node_js:
 services:
   - postgresql
 before_script:
-  - RAILS_ENV=test bundle exec rails webpacker:compile
+  - RAILS_ENV=test bundle exec rails assets:precompile
   - bundle exec rake db:create
   - bundle exec rake db:migrate
 script:
