@@ -10,20 +10,24 @@ jobs:
       postgres:
         image: postgres:12
         env:
-          POSTGRES_USER: myapp
-          POSTGRES_DB: myapp_test
-          POSTGRES_PASSWORD: ""
-        ports: [ "5432:5432" ]
+          POSTGRES_USER: custom_app
+          POSTGRES_DB: custom_app_test
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
       - name: Setup Ruby and install gems
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-
       - name: Setup Node
         uses: actions/setup-node@v1
         with:
@@ -45,10 +49,11 @@ jobs:
       - name: Setup test database
         env:
           RAILS_ENV: test
-          PGHOST: localhost
-          PGUSER: myapp
+          POSTGRES_HOST: localhost
+          POSTGRES_USER: custom_app
+          POSTGRES_PASSWORD: postgres
         run: |
+          sudo apt-get -yqq install libpq-dev
           bin/rails db:setup
-
       - name: Run tests
-        run: bin/rspec
+        run: bundle exec rspec
